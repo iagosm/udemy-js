@@ -1,0 +1,8 @@
+// Modulo A exportando de Três formas diferents. Sem precisar reatribuir
+console.log(this);
+this.ola = 'Fala Pessoal';
+exports.bemVindo = 'Bem vindo ao Node!'
+module.exports.ateLogo = 'Até o próximo exemplo!'
+
+// => Go to module B
+

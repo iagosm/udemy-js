@@ -1,0 +1,1 @@
+//this e algumas linguagens chamam de self
