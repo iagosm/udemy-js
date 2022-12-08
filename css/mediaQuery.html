@@ -12,6 +12,25 @@
             border: solid 5px;
             display: none;
         }
+
+        @media (max-width: 600px){
+            /* Se a altura for no maximo 600px, ele irá aplicar o elemento abaixo */
+            .muito-pequeno{
+                display: block;
+            }
+        }
+
+        @media (max-width:1000px), (orientation:portrait /*landscape*/){
+            /* Se altura for no minimo 1000 e retrato, irá aparecer */
+            .pequeno-retrato{display: block;}
+        }
+
+        @media (min-width:500px) and (max-width:1000px){
+            /* No minimo 500 e no maximo 1000 pixel irá aparecer */
+            .intervalo{
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
