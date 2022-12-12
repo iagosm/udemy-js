@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+        // Começando a criar elementos no exemplo
+        const body = document.querySelector('body')
+        // Criar novos elementos 
+        const div1 = document.createElement('div')
+        div1.classList.add('destaque')
+        div1.innerHTML = 'Primeiro'
+
+        const div2 = document.createElement('div')
+        div2.setAttribute('wm-atributo','valor')
+        // Até aqui não irá acontecer nd. precisa ser adicionado no body
+        div2.innerHTML = 'Segundo'
+
+        const p = document.createElement('p')
+        p.innerHTML = 'Terceiro'
+        const div3 = document.createElement('div')
+        // Adicionar o paragrafo dentro da div
+        // AppendChild coloca no ultimo elemento pai. Pai = Div3 / Filho = P
+        div3.appendChild(p)
+
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+        // Metodo Insert Before
+
+        const texto = document.createTextNode('Antes ...')
+        // Vc diz o elemento e aonde quer coloca-lo
+        div3.insertBefore(texto, div3.childNodes[1])
+
+        // Criando clone de um elemento
+        const div4 = div3.cloneNode(true)//true significa q ele copia até os filhos
+        body.appendChild(div4)
+        //Remover uma div
+        body.removeChild(div3)
+    </script>
+</body>
+
+</html>

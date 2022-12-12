@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <p>Texto Inicial</p>
+    </div>
+    <script>
+        const div = document.querySelector('div')
+        div.innerHTML = 'Texto Alterado'
+        //OuterHTML elimina div e tudo e deixa apenas o que foi digitado, Bem pouco usado
+        // div.outerHTML = 'Texto Alterado'
+
+        // Inserindo o elemento antes.
+        div.insertAdjacentHTML('beforebegin', '<p>antes do inicio</p>')
+        //Inserindo o elemetno depois
+        div.insertAdjacentHTML('afterbegin','<p>Depois do Inicio</p>')
+        // Inserindo antes do fim
+        div.insertAdjacentHTML('beforeend','<p>Antes do fim</p>')
+        //Para inserir dps do fim da tag
+        div.insertAdjacentHTML('afterend','<p>Depois do fim</p>')
+
+        // Somente em texto com tags tags
+        console.log(div.innerHTML);
+        // Somente em texto sem tags
+        console.log(div.innerText);
+    </script>
+</body>
+
+</html>
