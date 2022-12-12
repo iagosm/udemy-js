@@ -9,9 +9,25 @@
 
 <body class="conteudo exercicio">
     <div>
-        <a href="https://google.com.br">Google</a>
+        <!-- onclick="navegarEm5s(event)" -->
+        <!-- Fica mt explicito pra quem ta lendo que vai chamar uma função no onclick -->
+        <a espera-um-pouco href="https://google.com.br" >Google</a>
     </div>
     <script>
-        // ...
+        // Clicando e chamando uma função e setando o onclick dentro do "a"
+        function navegarEm5s(e){
+            e.preventDefault() //Ele desativa o comportamento padrão
+            console.log('Saindoo em 5 s')
+            setInterval(() =>{
+                const link = e.target
+                window.location.href = link.href
+            }, 5000)
+        }
+        // Outra abordagem
+        // const a = document.querySelector('a')
+        // a.onclick = navegarEm5s
+
+        const a = document.querySelector('[espera-um-pouco]')
+        a.onclick = navegarEm5s
     </script>
 </body>

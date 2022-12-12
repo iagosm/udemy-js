@@ -31,6 +31,42 @@
         <button wm-submit>Pesquisar</button>
     </form>
     <script>
-        // ...
+        // Evento para interceptar um submite de um formulario
+        // const submit = document.querySelector('[wm-submit]')
+    //     submit.onclick = function(e){
+    //         e.preventDefault()
+    //         //Dados do formulario atraves do formdata
+    //         const form = e.target.parentNode
+    //         const formData = new FormData(form) //Tem os dados do formulario a sua disposição
+    //         formData.append('ajax', true)
+    //         console.log(formData.get('q'))
+    //         console.log(formData.has('hl'))//verificar se um campo está contido
+
+    //         //Interator
+    //         for(let dado of formData){
+    //             console.log(dado)
+    //         }
+    // }
+
+        // No primeiro evento ele usa o onclick 
+        //No segundo ele usa onsubmit
+
+
+        // Segunda Forma que faz exatamente a mesma coisa
+        const submit = document.forms[0]
+        submit.onsubmit = function(e){
+            e.preventDefault()//Parar o comportamento padrao de submeter
+
+            const form = e.target
+            const formData = new FormData(form)
+            formData.append('ajax',true)
+            console.log(formData.get('q'))
+            console.log(formData.has('hl'))
+
+            for (let dado of formData){
+                console.log(dado)
+            }
+    }
+
     </script>
 </body>

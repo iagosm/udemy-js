@@ -10,6 +10,22 @@
 <body class="conteudo exercicio">
     <div>Elemento</div>
     <script>
-        // ...
+        // Mover o elemento com o mouse
+        const item = document.querySelector('div')
+        item.style.position = 'absolute'
+        item.onmousemove = e =>{
+            const item = e.target
+            item.style.cursor = 'move'
+            // Apenas mover quando clicar e arrastar a div.
+            if(e.buttons){//se está diferente de 0 é oq alguem clicou
+                //Evento.target = quem disparou o evento. O top é pq quer puxar de onde ela está no top da pagina.
+                //O eixo Y - altura da div / 2
+                //Setar a posição de onde está pelo top da pagina. Cursor de onde o mouse está - altura da div/2
+                item.style.top = `${e.clientY - (item.clientHeight / 2)}px`
+                // Fazendo o mesmo para o eixo Horizontal
+                item.style.left = `${e.clientX - (item.clientWidth / 2)}px` 
+            }
+
+        }
     </script>
 </body>

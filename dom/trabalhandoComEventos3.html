@@ -45,7 +45,33 @@
     </div>
     <div class="direita" wm-dropzone></div>
     <script>
-        // ...
+        // Dragin dropp = jogar um elemento de um local para o outro
+        const items = document.querySelectorAll('[wm-dropzone] .item')
+        items.forEach((item, index) =>{
+            //Fazer verificação pra saber se ele tem um id ou n.
+            //Atransformar em um elemento arrastado
+            item.draggable = true
+            // Definir q o item tem q ter um id. Se for falso, irá ser setado
+            item.id = item.id || `draggable-item-${index}`
+            //No momento que ele setar o ondragStart = arrastar, ele já seta o id
+            item.ondragstart = e =>
+            e.dataTransfer.setData('item-id', e.target.id)
+    })
+    // Dropzone vai ser o lugar aonde vai receber o item
+    const dropzone = document.querySelectorAll('[wm-dropzone]')
+    dropzone.forEach(dropzone => {
+        //OnDragOver acontece antes do event que de fato quer tratar
+        //Ai vamos partir para cuidar do event Ondrop, q é quando o usuario solta
+        dropzone.ondragover = e =>e.preventDefault()// Ele não irá fazer nada nesse evento e irá chamar o proximo
+        dropzone.ondrop = function(e){
+            const id = e.dataTransfer.getData('item-id')
+            const item = document.getElementById(id)//entenda qual elemento q foi movido
+            //E.target ele irá ficar dentro do item e fazendo a função
+            // e.target.appendChild(item) // 
+            dropzone.appendChild(item)//Só será jogado dentro da dropzone e n em qualquer elemento
+        }
+    
+    })
     </script>
 </body>
 
