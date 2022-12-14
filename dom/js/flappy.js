@@ -84,7 +84,7 @@ function Passaro(alturaJogo){
     let voando = false
     //Criando o Elemento Passaro
     this.elemento = novoElemento('img', 'passaro')
-    this.elemento.src = 'imgs/passaro.png'
+    this.elemento.src = 'imgs/mordecai.png'
     //Fazendo com que o passaro voe apertando qualquer tecla
     this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
     this.setY = y => this.elemento.style.bottom = `${y}px`
@@ -130,6 +130,32 @@ function Progresso() {
 //     passaro.animar()
 // }, 20)
 
+
+function estaoSobreposto(elementoA, elementoB) {
+    //pegar o retangulo ao elemento e consiga fazer validação se esta sobreposto ou n
+    const a = elementoA.getBoundingClientRect()//retangulo associado ao elemento A 
+    const b = elementoB.getBoundingClientRect()//retangulo associado ao elemento B
+
+    //teste para saber se há sobreposição horizontal
+    const horizontal = a.left + a.width >= b.left && b.left + b.width >= a.left
+    const vertical = a.top + a.height >= b.top && b.top + b.height >= a.top
+
+    return horizontal && vertical
+}
+
+function colidiu(passaro, barreiras){
+    let colidiu = false
+    barreiras.pares.forEach(parDeBarreiras =>{
+        if(!colidiu){
+            const superior = parDeBarreiras.superior.elemento
+            const inferior = parDeBarreiras.inferior.elemento
+            colidiu = estaoSobreposto(passaro.elemento, superior) || estaoSobreposto(passaro.elemento, inferior)
+        }
+    })
+    return colidiu
+}
+
+
 function FlappyBird() {
     let pontos = 0
  
@@ -151,8 +177,13 @@ function FlappyBird() {
         const temporizador = setInterval(() => {
             barreiras.animar()
             passaro.animar()
+
+            if(colidiu(passaro, barreiras)){
+                clearInterval(temporizador)
+            }
         }, 20)
     }
 }
  
-new FlappyBird().start()
+
+

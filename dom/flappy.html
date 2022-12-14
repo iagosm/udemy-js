@@ -10,7 +10,11 @@
  
 <body class="conteudo">
     <h1>Flappy Bird</h1>
-    <p>Aperte qualquer tecla</p>
+    <div class="botão">
+        <p class="ligar" onclick="new FlappyBird().start()">Iniciar</p>
+        <p class="recomece" onclick="window.location.reload()">Recomece</p>
+    </div>
+    
 <div wm-flappy></div>
     <script src="js/flappy.js"></script>
 </body>
