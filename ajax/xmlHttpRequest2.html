@@ -22,6 +22,41 @@
     <div class="progresso"></div>
 
     <script>
-        // ...
+        function ajaxUpload(config){
+            const xhr = new XMLHttpRequest()
+
+            if(xhr.upload){
+                //se está presente, pode fazer upload
+                xhr.upload.onprogress = e => {
+                    //verificar quanto % do arquivo ja foi upado
+                    const atual = e.loaded
+                    const total = e.total 
+                    const percentual = Math.floor(atual / total * 100)
+                    config.progresso({atual, total, percentual })
+                }
+            }
+
+            xhr.open("post",config.url, true)
+            xhr.send(config.formData)
+        }
+        //monitorar o evento onchange para quando ele enviar o arquivo irá fazer o upload
+        document.querySelector('input[type=file]').onchange = e => {
+            const formData = new FormData()
+            //e.target = input do tipo file
+            const inputFile = e.target
+            formData.append(inputFile.name, inputFile.files[0])
+
+            ajaxUpload({
+                url: "upload",
+                formData: formData,
+                progresso(dados) {
+                    //selecionar div com class progresso
+                    const progresso = document.querySelector('.progresso')
+                    progresso.innerHTML = JSON.stringify(dados)//convertendo para string
+                }
+
+            })
+        }
+
     </script>
 </body>
